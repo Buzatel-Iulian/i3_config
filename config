@@ -28,7 +28,10 @@ font pango:monospace 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-
+exec --no-startup-id autorandr --change default_conf
+exec --no-startup-id compton
+#exec --no-startup-id feh --bg-fill ~/.config/i3/2001.jpg
+exec --no-startup-id "sh -c 'sleep 2; exec nitrogen --restore'"
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -192,6 +195,15 @@ bar {
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
 		position top
 		tray_output primary
+		colors {
+            background #202020
+            separator #545454
+            # statusline #88ABC4
+            # focused_workspace  #AAAAAA #000000 #DDDDDD
+            # active_workspace   #000000 #808080 #336633
+            # inactive_workspace #606060 #808080 #000000
+            # urgent_workspace   #AAAAAA #e60000 #ffffff
+        }
 }
 
 # Audio controls
