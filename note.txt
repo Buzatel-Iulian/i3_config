@@ -1,0 +1,4 @@
+- https://askubuntu.com/a/450642
+
+awk '{if(l1){print $2-l1,$10-l2} else{l1=$2; l2=$10;}}' \
+  <(grep wlan0 /proc/net/dev) <(sleep 1; grep wlan0 /proc/net/dev)
