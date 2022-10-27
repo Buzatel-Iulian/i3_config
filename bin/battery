@@ -17,7 +17,13 @@ battery () {
             printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
         fi
     else
-		if [$CHARGE -le 20];then
+		if test $CHARGE -le 20;then
+			l_CHARGE=$(cat ~/.config/i3/bin/LAST_CHARGE)
+			if test $(($l_CHARGE-$CHARGE)) -gt 0;then
+				notify-send --urgency=critical "Battery Low" "$CHARGE %" --expire-time 10000
+				#echo "$CHARGE" > LAST_CHARGE
+			fi
+			echo "$CHARGE" > ~/.config/i3/bin/LAST_CHARGE
 			printf "!!WARN!! %s%% %s" "$CHARGE" "$STATUS"
         else
 			printf " %s%% %s" "$CHARGE" "$STATUS"
